@@ -1,7 +1,9 @@
 codez
 =====
 
-Use python and django
+Uses:
+- [python 2.7.3](http://www.python.org/getit/)
+- [django 1.4.2](https://www.djangoproject.com/download/)
 
 Sections:
 
