@@ -1,8 +1,7 @@
-Codez Home <a href="/accounts/login">Login</a> <a href="/accounts/register">Register</a>
+{% extends "base.html" %}
 
-<hr/>
-
-Latest News:
+{% block content %}
+<h2>Latest News</h2>
 {% if latest_news_list %}
     <ul>
     {% for news in latest_news_list %}
@@ -15,3 +14,4 @@ Latest News:
 {% else %}
     <p>No news are available.</p>
 {% endif %}
+{% endblock %}
