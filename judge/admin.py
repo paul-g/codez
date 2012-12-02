@@ -1,5 +1,7 @@
 from judge.models import News
 from django.contrib import admin
+from judge.models import *
+
 
 class NewsInline(admin.TabularInline):
 	model = News
@@ -17,3 +19,7 @@ class NewsAdmin(admin.ModelAdmin):
 	date_hierarchy = 'pub_date'
 	
 admin.site.register(News)
+admin.site.register(Submission)
+admin.site.register(Problem)
+admin.site.register(TestRun)
+admin.site.register(TestCase)
