@@ -1,27 +1,25 @@
 {% extends "registration/base.html" %}
-
-{% block title %}Log in{% endblock %}
+{% block title %} Codez | Sign In {% endblock %}
 
 {% block content %}
 
-<h1>Log in</h1>
+<form class="form-signin" method="post" action="?next={{ next|default:"/" }}">{% csrf_token %}
+  <h3 class="form-signin-heading">Codez Sign In</h3><hr/>
+  {% if form.errors %}
+  <p class="error">Please correct the errors below:</p>
+  {% endif %}
 
-{% if form.errors %}
-<p class="error">Please correct the errors below:</p>
-{% endif %}
+  <dl>
+    <dt><label for="id_username">Username:</label>{% if form.username.errors %} <span class="error">{{ form.username.errors|join:", " }}</span>{% endif %}</dt>
+    <dd>{{ form.username }}</dd>
+    <dt><label for="id_password">Password:</label>{% if form.password.errors %} <span class="error">{{ form.password.errors|join:", " }}</span>{% endif %}</dt>
+    <dd>{{ form.password }}</dd>
+    <dt><button class="btn btn-large btn-primary" type="submit">Sign In</button> </dt>
+  </dl>
 
-<form method="post" action="?next={{ next|default:"/" }}">{% csrf_token %}
-<dl>
-<dt><label for="id_username">Username:</label>{% if form.username.errors %} <span class="error">{{ form.username.errors|join:", " }}</span>{% endif %}</dt>
-<dd>{{ form.username }}</dd>
-<dt><label for="id_password">Password:</label>{% if form.password.errors %} <span class="error">{{ form.password.errors|join:", " }}</span>{% endif %}</dt>
-<dd>{{ form.password }}</dd>
-<dt><input type="submit" value="Log in" /></dt>
-</dl>
+  Don't have an account? <a href="/accounts/register/">Sign Up</a>!
 </form>
+
 {% endblock %}
 
-{% block content-related %}
-<p>If you don't have an account, you can <a href="/accounts/register/">sign
-up</a> for one.
-{% endblock %}
+</html>
