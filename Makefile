@@ -1,3 +1,5 @@
+all: syncdb run
+
 print-sql:
 	python manage.py sql judge
 
