@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet">
   <head>
     <title>{% block title %}codez{% endblock %}</title>
     <style type="text/css">
@@ -63,24 +64,36 @@
     <div id="wrap">
       <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
-	  <div class="container">
-	    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	    </a>
+	  <div class="container-fluid">
 	    <a class="brand" href="/">Codez</a>
 	    <div class="nav-collapse collapse">
+	      {% if user.is_authenticated %}
 	      <ul class="nav">
-		<li><a href="#about">About</a></li>
-		<li><a href="#contact">Contact</a></li>
+		<li><a href="#train">Train</a></li>
+		<li><a href="#solve">Solve</a></li>
+		<li><a href="#propose">Propose</a></li>
+		<li><a href="#compete">Compete</a></li>
+		<li><a href="#host">Host</a></li>
 	      </ul>
+	      {% endif %}
 
+	      {% if user.is_authenticated %}
+	      <div class="btn-group pull-right">
+		<a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> {{ user.username }} </a>
+		<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+		<ul class="dropdown-menu">
+		  <li><a href="#profile"><i class="icon-pencil"></i> Profile</a></li>
+		  <li><a href="/accounts/logout"><i class="icon-trash"></i> Logout</a></li>
+		</ul>
+	      </div>
+	      {% else %}
 	      <div class="navbar-form pull-right">	      
 		<a href="/accounts/login"  class="btn">Sign in</a>
 		<a href="/accounts/register"  class="btn">Join</a>
               </div>
-	    </div><!--/.nav-collapse -->
+	      {% endif %}
+
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -129,6 +142,9 @@
         <p class="muted credit">Footer, Copyright bla bla bla</p>
       </div>
     </div>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="{{ STATIC_URL }}/js/bootstrap.min.js"></script
 
   </body>
 </html>
