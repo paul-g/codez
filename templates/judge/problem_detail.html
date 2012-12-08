@@ -15,19 +15,36 @@
 
   <h4>Output</h4>
   {{ problem.output_description }}
+  <br/><br/>
+
+  <h4>Samples</h4>
+
   <hr/>
   {% for test_case in problem.sample_cases %}
   <div class="row">
     <div class="span2 offset1">
-      <h4>Sample Input {{ forloop.counter }}</h4>
+      <h5>Sample Input {{ forloop.counter }}</h5>
       <pre>{{ test_case.input_data }}</pre>
     </div>
     <div class="span2">
-      <h4>Expected Output  {{ forloop.counter }}</h4>
+      <h5>Expected Output  {{ forloop.counter }}</h5>
       <pre>{{ test_case.output_data }}</pre>
     </div>
   </div>
-
   {% endfor %}
 </div>
+<br/><br/>
+
+<h4>Submit</h4>
+<hr/>
+  <form action="/problem/{{ problem.id }}" method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ upload_form.as_p }}
+    <input type="submit" value="Upload Solution" />
+  </form>
+
+{% if submission_status == 'success' %}
+Solution submitted!
+{% else %}{% if submission_status == 'fail' %}
+Could not submit solution
+{% endif %}{% endif %}
 {% endblock %}
