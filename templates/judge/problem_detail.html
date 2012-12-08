@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="">
+  <h2>{{ problem.name }}</h2>
+  <hr/>
+
+  <h4>Description</h4>
+  {{ problem.problem_statement }}
+  <br/><br/>
+
+  <h4>Input</h4>
+  {{ problem.input_description }}
+  <br/><br/>
+
+  <h4>Output</h4>
+  {{ problem.output_description }}
+  <hr/>
+  {% for test_case in problem.sample_cases %}
+  <div class="row">
+    <div class="span2 offset1">
+      <h4>Sample Input {{ forloop.counter }}</h4>
+      <pre>{{ test_case.input_data }}</pre>
+    </div>
+    <div class="span2">
+      <h4>Expected Output  {{ forloop.counter }}</h4>
+      <pre>{{ test_case.output_data }}</pre>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+{% endblock %}

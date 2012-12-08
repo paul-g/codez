@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 MAX_PROBLEM_NAME = 20
 MAX_LANG_ID = 10
@@ -8,14 +9,21 @@ MAX_TESTCASE_RESULT = 10
 MAX_FILE_PATH = 100
 
 class Problem(models.Model):
-    name              = models.CharField(max_length=MAX_PROBLEM_NAME)
-    problem_statement = models.CharField(max_length=MAX_FILE_PATH) #filename
-    solution          = models.CharField(max_length=MAX_FILE_PATH)
+    name               = models.CharField(max_length=MAX_PROBLEM_NAME)
+    problem_statement  = models.CharField(max_length=MAX_FILE_PATH) #filename
+    input_description  = models.CharField(max_length=2000)
+    output_description = models.CharField(max_length=2000)
+    solution           = models.CharField(max_length=MAX_FILE_PATH)
+    def __unicode__(self):
+        return self.name
+    def sample_cases(self):
+        return TestCase.objects.filter(problem=self, sample=True)
 
 class TestCase(models.Model):
-    problem         = models.ForeignKey(Problem)
-    input_filename  = models.CharField(max_length=MAX_FILE_PATH)
-    output_filename = models.CharField(max_length=MAX_FILE_PATH)
+    problem     = models.ForeignKey(Problem)
+    input_data  = models.CharField(max_length=MAX_FILE_PATH)
+    output_data = models.CharField(max_length=MAX_FILE_PATH)
+    sample      = models.BooleanField()
 
 class Submission(models.Model):
     problem         = models.ForeignKey(Problem)
@@ -37,5 +45,9 @@ class News(models.Model):
     text   = models.CharField(max_length=2000)
 #   author = 
     pub_date = models.DateTimeField('date published')
+    @classmethod
+    def create(cls, title, text):
+        return cls(title=title, text=text, pub_date=timezone.now())
     def __unicode__(self):
         return self.text
+
