@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>All Submissions</h2>
+{% if submissions_list %}
+
+<table class="table">
+  <tr>
+    <td>Submission ID</td>
+    <td>Problem</td>
+    <td>Author</td>
+    <td>Language</td>
+    <td>Submitted At</td>
+    <td>Result</td>
+  </tr>
+  {% for submission in submissions_list %}
+  <tr>
+    <td><a href="/submission/{{ submission.id }}/">{{ submission.id }}</a></td>
+    <td><a href="/problem/{{ submission.problem.id }}/">{{ submission.problem.name }}</a></td>
+    <td>{{ submission.author }}</td>
+    <td>{{ submission.language }}</td>
+    <td>{{ submission.submittedAt }}</td>
+    <td>{{ submission.overall_result }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No problems are available.</p>
+{% endif %}
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import ListView, DetailView
-from judge.models import News, Problem
+from judge.models import News, Problem, Submission
 from judge import views
 
 urlpatterns = patterns('',
@@ -18,6 +18,13 @@ urlpatterns = patterns('',
 			queryset=Problem.objects.all(),
 			context_object_name='problems_list',
 			template_name='judge/problems.html',
+		)
+	),
+        url(r'^submissions$',
+		ListView.as_view(
+			queryset=Submission.objects.all().order_by('-submittedAt'),
+			context_object_name='submissions_list',
+			template_name='judge/submissions.html',
 		)
 	),
 )
