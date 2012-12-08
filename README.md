@@ -34,8 +34,7 @@ TODO
 1. Check out dom judge
 2. Propose problem
 3. Submit Solution
-4. User Login
-5. Create training course
+4. Create training course
 
 
 FEATURES
