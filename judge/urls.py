@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import ListView, DetailView
-from judge.models import News
-from judge.models import Problem
+from judge.models import News, Problem
 
 urlpatterns = patterns('',
 	url(r'^$',
@@ -12,5 +11,12 @@ urlpatterns = patterns('',
 		)
 	),
         url(r'^news/(?P<pk>\d+)',    DetailView.as_view(model=News)),
-        url(r'^problem/(?P<pk>\d+)', DetailView.as_view(model=Problem))
+        url(r'^problem/(?P<pk>\d+)', DetailView.as_view(model=Problem)),
+        url(r'^problems$',
+		ListView.as_view(
+			queryset=Problem.objects.all(),
+			context_object_name='problems_list',
+			template_name='judge/problems.html',
+		)
+	),
 )
