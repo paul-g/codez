@@ -15,6 +15,9 @@ run-mail:
 clean:
 	find . -name "*.pyc" -exec $(RM) {} \;
 
+dump:
+	./manage.py dumpdata judge > judge/fixtures/initial_data.json
+
 help:
 	@ echo "Available targets:"
 	@ echo "  run-mail   -- start the e-mail server"
