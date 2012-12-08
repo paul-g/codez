@@ -16,7 +16,8 @@ clean:
 	find . -name "*.pyc" -exec $(RM) {} \;
 
 dump:
-	./manage.py dumpdata judge > judge/fixtures/initial_data.json
+	./manage.py dumpdata judge --indent 4 > judge/fixtures/initial_data.json
+	./manage.py dumpdata auth.User --indent 4 >> judge/fixtures/initial_data.json
 
 help:
 	@ echo "Available targets:"
