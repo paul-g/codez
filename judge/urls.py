@@ -20,6 +20,7 @@ urlpatterns = patterns('',
 			template_name='judge/problems.html',
 		)
 	),
+        url(r'^submission/(?P<pk>\d+)', DetailView.as_view(model=Submission)),
         url(r'^submissions$',
 		ListView.as_view(
 			queryset=Submission.objects.all().order_by('-submittedAt'),
