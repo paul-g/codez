@@ -7,7 +7,9 @@
     {% for news in latest_news_list %}
         <li>
 		<a href="/news/{{ news.id }}/">{{ news.title}}</a>
+		{% autoescape off %}
 		<p>{{ news.text }}</p>
+		{% endautoescape %}
 	</li>
     {% endfor %}
     </ul>
