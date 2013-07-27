@@ -9,6 +9,13 @@ Requires:
 - [django 1.4.2](https://www.djangoproject.com/download/)
 - [django-registration](https://bitbucket.org/ubernostrum/django-registration/)
 - [sqlite 3](http://www.sqlite.org/)
+- Note: best way to install these is using pip:
+
+```
+sudo apt-get install pip
+sudo pip install Django==1.4.5
+sudo pip install django-registration
+```
 
 Instructions
 ------------
