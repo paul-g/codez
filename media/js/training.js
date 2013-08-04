@@ -1,8 +1,7 @@
 var g, renderer;
 
 /* only do all this when document has finished loading (needed for RaphaelJS) */
-window.onload = function() {
-    // TODO(paul-g): fetch training data from server
+showTrainingGraph = function(div_id, training_data) {
     var width = $(document).width() / 2;
     var height = $(document).height() / 2;
 
@@ -10,26 +9,15 @@ window.onload = function() {
 
     var DIR = {directed: true};
 
-    // Training nodes
-    var nodeCppPrimer = "C++ primer";
-    var nodeJavaPrimer = "Java primer";
-    var nodeHaskellPrimer = "Haskell primer";
-    var nodeDataStructures = "Data Structures";
-    var nodeGraphsOne = "Graphs Algorithms One";
-    var nodeGraphsAdv = "Graphs Advanced";
-    var nodeGraphsHardcore = "Graphs Hardcore";
-
-    // Training edges
-    g.addEdge(nodeCppPrimer, nodeDataStructures, DIR);
-    g.addEdge(nodeJavaPrimer, nodeDataStructures, DIR);
-    g.addEdge(nodeHaskellPrimer, nodeDataStructures, DIR)
-
-    g.addEdge(nodeCppPrimer, nodeGraphsOne, DIR);
-    g.addEdge(nodeJavaPrimer, nodeGraphsOne, DIR);
-    g.addEdge(nodeHaskellPrimer, nodeGraphsOne, DIR)
-
-    g.addEdge(nodeGraphsOne, nodeGraphsAdv, DIR);
-    g.addEdge(nodeGraphsAdv, nodeGraphsHardcore, DIR);
+    for (var i = 0; i < training_data.length; i++) {
+        var node = training_data[i];
+        var nodeName = node[0];
+        var nodeDeps = node[1];
+        for (var j = 0; j < nodeDeps.length; j++) {
+            g.addEdge(nodeDeps[j], nodeName, DIR);
+            // TODO(paul-g): improve layout logic
+        }
+    }
 
     // Layout
     var layouter = new Graph.Layout.Spring(g);

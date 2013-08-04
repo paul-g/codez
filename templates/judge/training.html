@@ -8,5 +8,10 @@
 {% endblock %}
 {% block content %}
 <div id="canvas"></div>
-  <!-- Dracula Graph Library-->
+
+<script type="text/javascript">
+  training_data = {{ training_data|safe }}
+  showTrainingGraph('canvas', training_data);
+</script>
+
 {% endblock %}
