@@ -37,3 +37,7 @@ def handle_submission(source_file, problem, user, language):
     s = Submission.create(problem, source, user, language)
     print s
     s.save()
+
+def training_view(request):
+    """Render training view page."""
+    return render(request, 'judge/training.html', {})

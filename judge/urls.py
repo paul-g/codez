@@ -28,4 +28,5 @@ urlpatterns = patterns('',
 			template_name='judge/submissions.html',
 		)
 	),
+        url(r'^training/', views.training_view),
 )

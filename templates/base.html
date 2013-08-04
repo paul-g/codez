@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet"/>
+  {% block resources %}{% endblock %}
   <head>
     <title>{% block title %}codez{% endblock %}</title>
     <style type="text/css">
@@ -87,7 +88,7 @@
 		</ul>
 	      </div>
 	      {% else %}
-	      <div class="navbar-form pull-right">	      
+	      <div class="navbar-form pull-right">
 		<a href="/accounts/login"  class="btn">Sign in</a>
 		<a href="/accounts/register"  class="btn">Join</a>
               </div>
@@ -99,7 +100,7 @@
       </div>
 
       <div id="navbar">
-	<a href="/accounts/login">Login</a> 
+	<a href="/accounts/login">Login</a>
 	<a href="/accounts/register">Register</a>
 	<hr/>
       </div>
@@ -115,8 +116,8 @@
 		<li class="nav-header">Problem Archive</li>
 		<li><a href="/problems">Problems</a></li>
 		<li><a href="/submissions">Submissions</a></li>
-		<li><a href="#graphs">Training</a></li>
-		<li><a href="#search">Tasks</a></li>
+		<li><a href="/training">Training</a></li>
+<!--		<li><a href="#search">Tasks</a></li> -->
 		<li class="nav-header">Tutorials</li>
 		<li><a href="#graphs">Graphs</a></li>
 		<li><a href="#search">Complete Search</a></li>
@@ -146,7 +147,7 @@
     </div>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="{{ STATIC_URL }}/js/bootstrap.min.js"></script
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script
 
   </body>
 </html>
