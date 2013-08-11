@@ -2,12 +2,12 @@ all: db run
 
 db: resetdb
 	./manage.py loaddata judge/fixtures/initial_users.json
-	./manage.py syncdb	
+	./manage.py syncdb
 
 print-sql:
 	./manage.py sql judge
 
-syncdb:	
+syncdb:
 	./manage.py syncdb
 
 resetdb:
