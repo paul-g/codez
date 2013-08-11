@@ -23,6 +23,94 @@
     },
     {
         "pk": 1,
+        "model": "judge.tutorial",
+        "fields": {
+            "description": "Haskell Primer",
+            "title": "Haskell Primer"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "judge.tutorial",
+        "fields": {
+            "description": "Java Primer",
+            "title": "Java Primer"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "judge.tutorial",
+        "fields": {
+            "description": "Data Structures",
+            "title": "Data Structures"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "judge.tutorial",
+        "fields": {
+            "description": "Graph Algorithms",
+            "title": "Graph Algorithms"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "judge.tutorial",
+        "fields": {
+            "description": "Advanced Graph Alghoritms",
+            "title": "Advanced Graph Algorithms"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "judge.tutorial",
+        "fields": {
+            "description": "Hardcore Graph Algorithms",
+            "title": "Hardcore Graph Algorithms"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "judge.tutorialdependencies",
+        "fields": {
+            "tutorial_dep": 1,
+            "tutorial": 3
+        }
+    },
+    {
+        "pk": 2,
+        "model": "judge.tutorialdependencies",
+        "fields": {
+            "tutorial_dep": 2,
+            "tutorial": 3
+        }
+    },
+    {
+        "pk": 3,
+        "model": "judge.tutorialdependencies",
+        "fields": {
+            "tutorial_dep": 3,
+            "tutorial": 4
+        }
+    },
+    {
+        "pk": 4,
+        "model": "judge.tutorialdependencies",
+        "fields": {
+            "tutorial_dep": 4,
+            "tutorial": 5
+        }
+    },
+    {
+        "pk": 5,
+        "model": "judge.tutorialdependencies",
+        "fields": {
+            "tutorial_dep": 5,
+            "tutorial": 6
+        }
+    },
+    {
+        "pk": 1,
         "model": "judge.testcase",
         "fields": {
             "sample": true,

@@ -7,8 +7,10 @@ MAX_PROBLEM_NAME = 20
 MAX_LANG_ID = 10
 MAX_TESTCASE_RESULT = 10
 MAX_FILE_PATH = 100
+MAX_TUTORIAL_DESC = 100
 
 class Problem(models.Model):
+    """A problem statement."""
     name               = models.CharField(max_length=MAX_PROBLEM_NAME)
     problem_statement  = models.CharField(max_length=MAX_FILE_PATH) #filename
     input_description  = models.CharField(max_length=2000)
@@ -20,6 +22,34 @@ class Problem(models.Model):
 
     def sample_cases(self):
         return TestCase.objects.filter(problem=self, sample=True)
+
+class Tutorial(models.Model):
+    """A tutorial groups an ordered list of problem statements. It may
+    have one or more other tutorials as pre-requisites."""
+    title = models.CharField(max_length=MAX_TUTORIAL_DESC)
+    description = models.CharField(max_length=MAX_TUTORIAL_DESC)
+
+    def __str__(self):
+        return self.title
+
+class UserTutorial(models.Model):
+    """Mapping from users to completed tutorials."""
+    user = models.ForeignKey(User)
+    tutorial = models.ForeignKey(Tutorial)
+    complete = models.BooleanField()
+
+class TutorialProblem(models.Model):
+    """Foreign key relation for tutorial and problems."""
+    problem = models.ForeignKey(Problem)
+    tutorial = models.ForeignKey(Tutorial)
+
+class TutorialDependencies(models.Model):
+    """Relation for tutorial dependencies."""
+    tutorial = models.ForeignKey(Tutorial)
+    tutorial_dep = models.ForeignKey(Tutorial, related_name='tutorial_test')
+
+    def __str__(self):
+        return str(self.tutorial) + " depends on " + str(self.tutorial_dep)
 
 class TestCase(models.Model):
     problem     = models.ForeignKey(Problem)
@@ -34,7 +64,7 @@ class Submission(models.Model):
     language        = models.CharField(max_length=MAX_LANG_ID)
     submittedAt     = models.DateTimeField()
     evaluated       = models.BooleanField()
-    compiler_output = models.CharField(max_length=MAX_FILE_PATH) 
+    compiler_output = models.CharField(max_length=MAX_FILE_PATH)
     overall_result  = models.CharField(max_length=MAX_TESTCASE_RESULT)
 
     def __unicode__(self):
@@ -74,4 +104,3 @@ class News(models.Model):
 
     def __unicode__(self):
         return self.text
-
